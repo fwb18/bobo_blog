@@ -1,0 +1,21 @@
+<!doctype html>
+<title>Flaskr 博客</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+    <a href="/">
+  <h1>Flaskr博客</h1></a>
+  <div class=metanav>
+  {% if not session.logged_in %}
+    <a href="{{ url_for('login') }}">登录</a>
+    <a href="{{ url_for('register') }}">注册</a>
+  {% else %}
+    <a href="{{ url_for('add_entry')}}">撰写新博客</a>
+    <a href="{{ url_for('show_profile', username= session.logged_in) }}">{{session.logged_in}}</a> &nbsp;&nbsp;
+    <a href="{{ url_for('logout') }}">注销</a> &nbsp;&nbsp;
+  {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>

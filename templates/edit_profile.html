@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Edit Profile</h2>
+  {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+  <form action="{{ url_for('edit_profile') }}" method=post>
+    <dl>
+      <dt>New Username:
+      <dd><input type=text name=username value= {{session.logged_in}}>
+      <dt>New Password:
+      <dd><input type=password name=password >
+      <dd><input type=submit value=Update>
+    </dl>
+  </form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=entries>
+      {% for entry in entries %}
+      <li><h2>{{ entry.title }}</h2><p>{{ entry.text|safe }}</p>
+          <small> <a href="{{ url_for('show_profile', username= entry.username)  }}">作者:{{ entry.username }}</a> </small>
+      {% else %}
+        <li><em>Unbelievable.  No entries here so far</em>
+      {% endfor %}
+      <p>页码:
+      {% for page in pages %}
+      <a href="{{ url_for('show_entries', page = page) }}">[{{page}}]</a> &nbsp;
+      {%endfor %}
+      </p>
+  </ul>
+{% endblock %}
